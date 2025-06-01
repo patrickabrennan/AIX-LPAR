@@ -46,9 +46,10 @@ resource "ibm_pi_network" "my_subnet" {
 }
 
 resource "ibm_pi_instance" "lpar1-aix" {
+  count = 3
   pi_memory		= var.lpar1-aix_memory
   pi_processors		= var.lpar1-aix_processors
-  pi_instance_name	= var.lpar1-aix_instance_name
+  pi_instance_name	= var.lpar1-aix_instance_name-${count.index}
   pi_proc_type		= var.lpar1-aix_proc_type
   pi_image_id 		= var.lpar1-aix_image_id
   pi_sys_type		= var.lpar1-aix_sys_type
@@ -61,9 +62,10 @@ resource "ibm_pi_instance" "lpar1-aix" {
 }
 
 resource "ibm_pi_instance" "lpar2-linux" {
+  count = 2
   pi_memory		= var.lpar2-linux_memory
   pi_processors		= var.lpar2-linux_processors
-  pi_instance_name	= var.lpar2-linux_instance_name
+  pi_instance_name	= var.lpar2-linux_instance_name-${count.index}
   pi_proc_type		= var.lpar2-linux_proc_type
   pi_image_id 		= var.lpar2-linux_image_id
   pi_sys_type		= var.lpar2-linux_sys_type
