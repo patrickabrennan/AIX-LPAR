@@ -87,7 +87,7 @@ resource "ibm_pi_volume" "lpar1-aix_test_volume" {
 resource "ibm_pi_volume" "lpar2-linux_test_volume" {
   pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
   pi_volume_size	= var.lpar2-linux_volume_size
-  pi_volume_name	= var.lpar2-linux_name
+  pi_volume_name	= var.lpar2-linux_volume_name
   pi_volume_type	= var.lpar2-linux_volume_type 
 }
 
