@@ -62,8 +62,9 @@ variable "lpar1-aix_sys_type" {
   type		= string
 }
 
-
-
+variable lpar1-aix_replicants { 
+  type		= string
+}
 
 variable "lpar2-linux_memory" {
   type		= string
@@ -89,7 +90,9 @@ variable "lpar2-linux_sys_type" {
   type		= string
 }
 
-
+variable lpar2-linux_replicants { 
+  type		= string
+}
 
 
 
