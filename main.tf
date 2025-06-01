@@ -49,7 +49,7 @@ resource "ibm_pi_instance" "lpar1-aix" {
   count = var.lpar1-aix_count
   pi_memory		= var.lpar1-aix_memory
   pi_processors		= var.lpar1-aix_processors
-  pi_instance_name	= var.lpar1-aix_instance_name-${count.index}
+  pi_instance_name	= var.lpar1-aix_instance_name    #-${count.index}
 
   pi_proc_type		= var.lpar1-aix_proc_type
   pi_image_id 		= var.lpar1-aix_image_id
@@ -66,7 +66,7 @@ resource "ibm_pi_instance" "lpar2-linux" {
   count = var.lpar2-linux_count
   pi_memory		= var.lpar2-linux_memory
   pi_processors		= var.lpar2-linux_processors
-  pi_instance_name	= var.lpar2-linux_instance_name-${count.index}
+  pi_instance_name	= var.lpar2-linux_instance_name   #-${count.index}
 
   pi_proc_type		= var.lpar2-linux_proc_type
   pi_image_id 		= var.lpar2-linux_image_id
