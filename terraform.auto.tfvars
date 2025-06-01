@@ -1,6 +1,6 @@
 region  = "us-south"
 zone = "us-south"
-workspace-name = "LPAR_Pfizer-Demo"
+workspace-name = "Pfizer-LPAR_Demo"
 pi_cloud_instance_id	= "10f21edf-47a3-454f-b2a3-e1032b4ea6c5"
 pi_network_name	= "public-subnet-1"
 pi_network_type = "pub-vlan"
