@@ -46,7 +46,7 @@ resource "ibm_pi_network" "my_subnet" {
 }
 
 resource "ibm_pi_instance" "lpar1-aix" {
-  count = 3
+  count = var.lpar1-aix_count
   pi_memory		= var.lpar1-aix_memory
   pi_processors		= var.lpar1-aix_processors
   pi_instance_name	= var.lpar1-aix_instance_name-${count.index}
@@ -62,7 +62,7 @@ resource "ibm_pi_instance" "lpar1-aix" {
 }
 
 resource "ibm_pi_instance" "lpar2-linux" {
-  count = 2
+  count = var.lpar2-linux_count
   pi_memory		= var.lpar2-linux_memory
   pi_processors		= var.lpar2-linux_processors
   pi_instance_name	= var.lpar2-linux_instance_name-${count.index}
