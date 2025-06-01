@@ -52,6 +52,7 @@ resource "ibm_pi_instance" "lpar1-aix" {
   pi_proc_type		= var.lpar1-aix_proc_type
   pi_image_id 		= var.lpar1-aix_image_id
   pi_sys_type		= var.lpar1-aix_sys_type
+  pi_replicants = var.lpar1-aix_replicants
   pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
   pi_key_pair_name = var.pi_key_name
   pi_network {
@@ -66,6 +67,7 @@ resource "ibm_pi_instance" "lpar2-linux" {
   pi_proc_type		= var.lpar2-linux_proc_type
   pi_image_id 		= var.lpar2-linux_image_id
   pi_sys_type		= var.lpar2-linux_sys_type
+  pi_replicants = var.lpar2-linux_replicants
   pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
   pi_key_pair_name = var.pi_key_name
   pi_network {
