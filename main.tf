@@ -46,7 +46,6 @@ resource "ibm_pi_network" "my_subnet" {
 }
 
 resource "ibm_pi_instance" "lpar1-aix" {
-  pi_replicants = var.lpar1-aix_replicants
   pi_memory		= var.lpar1-aix_memory
   pi_processors		= var.lpar1-aix_processors
   pi_instance_name	= var.lpar1-aix_instance_name
@@ -62,7 +61,6 @@ resource "ibm_pi_instance" "lpar1-aix" {
 }
 
 resource "ibm_pi_instance" "lpar2-linux" {
-  pi_replicants = var.lpar1-linux_replicants
   pi_memory		= var.lpar2-linux_memory
   pi_processors		= var.lpar2-linux_processors
   pi_instance_name	= var.lpar2-linux_instance_name
