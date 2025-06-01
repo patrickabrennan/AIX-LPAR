@@ -38,6 +38,11 @@ variable "pi_gateway" {
   type		= string
 }
 
+
+variable lpar1-aix_count {
+  type		= string
+}
+
 variable "lpar1-aix_memory" {
   type		= string
 }
@@ -63,6 +68,10 @@ variable "lpar1-aix_sys_type" {
 }
 
 variable lpar1-aix_replicants { 
+  type		= string
+}
+
+variable lpar2-linux_count {
   type		= string
 }
 
