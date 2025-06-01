@@ -45,13 +45,27 @@ resource "ibm_pi_network" "my_subnet" {
   pi_dns = ["8.8.8.8"]
 }
 
-resource "ibm_pi_instance" "my_instance" {
-  pi_memory		= var.pi_memory
-  pi_processors		= var.pi_processors
-  pi_instance_name	= var.pi_instance_name
-  pi_proc_type		= var.pi_proc_type
-  pi_image_id 		= var.pi_image_id
-  pi_sys_type		= var.pi_sys_type
+resource "ibm_pi_instance" "lpar1-aix" {
+  pi_memory		= var.lpar1-aix_memory
+  pi_processors		= var.lpar1-aix_processors
+  pi_instance_name	= var.lpar1-aix_instance_name
+  pi_proc_type		= var.lpar1-aix_proc_type
+  pi_image_id 		= var.lpar1-aix_image_id
+  pi_sys_type		= var.lpar1-aix_sys_type
+  pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
+  pi_key_pair_name = var.pi_key_name
+  pi_network {
+   network_id = ibm_pi_network.my_subnet.network_id
+  }
+}
+
+resource "ibm_pi_instance" "lpar2-linux" {
+  pi_memory		= var.lpar2-linuxmemory
+  pi_processors		= var.lpar2-linuxprocessors
+  pi_instance_name	= var.lpar2-linuxinstance_name
+  pi_proc_type		= var.lpar2-linux_proc_type
+  pi_image_id 		= var.lpar2-linux_image_id
+  pi_sys_type		= var.lpar2-linux_sys_type
   pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
   pi_key_pair_name = var.pi_key_name
   pi_network {
@@ -67,10 +81,16 @@ resource "ibm_pi_volume" "test_volume" {
   pi_volume_type	= var.pi_volume_type 
 }
 
-resource "ibm_pi_volume_attach" "test_volume" {
+resource "ibm_pi_volume_attach" "lpar1-aix_test_volume" {
   pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
   pi_volume_id = ibm_pi_volume.test_volume.volume_id
-  pi_instance_id = ibm_pi_instance.my_instance.instance_id
+  pi_instance_id = ibm_pi_instance.lpar1-aix.instance_id
+}
+
+resource "ibm_pi_volume_attach" "lpar2-linux_test_volume" {
+  pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
+  pi_volume_id = ibm_pi_volume.test_volume.volume_id
+  pi_instance_id = ibm_pi_instance.lpar2-linux.instance_id
 }
 
 resource "ibm_security_group" "sg1" {
