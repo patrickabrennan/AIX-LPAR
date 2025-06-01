@@ -93,13 +93,13 @@ resource "ibm_pi_volume" "lpar2-linux_test_volume" {
 
 resource "ibm_pi_volume_attach" "lpar1-aix_test_volume" {
   pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
-  pi_volume_id = ibm_pi_volume.test_volume.volume_id
+  pi_volume_id = ibm_pi_volume.lpar1-aix_test_volume.volume_id
   pi_instance_id = ibm_pi_instance.lpar1-aix.instance_id
 }
 
 resource "ibm_pi_volume_attach" "lpar2-linux_test_volume" {
   pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
-  pi_volume_id = ibm_pi_volume.test_volume.volume_id
+  pi_volume_id = ibm_pi_volume.lpar2-linux_test_volume.volume_id
   pi_instance_id = ibm_pi_instance.lpar2-linux.instance_id
 }
 
