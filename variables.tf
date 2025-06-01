@@ -94,17 +94,27 @@ variable lpar2-linux_replicants {
   type		= string
 }
 
-
-
-variable "pi_volume_size" {
+variable "lpar1-aix_volume_size" {
   type		= string
 }
 
-variable "pi_volume_name" {
+variable "lpar1-aix_volume_name" {
   type		= string
 }
 
-variable "pi_volume_type" {
+variable "lpar1-aix_volume_type" {
+  type		= string
+}
+
+variable "lpar2-linux_volume_size" {
+  type		= string
+}
+
+variable "lpar2-linux_volume_name" {
+  type		= string
+}
+
+variable "lpar2-linux_volume_type" {
   type		= string
 }
 
