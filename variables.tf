@@ -38,29 +38,60 @@ variable "pi_gateway" {
   type		= string
 }
 
-variable "pi_memory" {
+variable "lpar1-aix_memory" {
   type		= string
 }
 
-variable "pi_processors" {
+variable "lpar1-aix_processors" {
   type		= string
 }
 
-variable "pi_instance_name" {
+variable "lpar1-aix_instance_name" {
   type		= string
 }
 
-variable "pi_proc_type" {
+variable "lpar1-aix_proc_type" {
   type		= string
 }
 
-variable "pi_image_id" {
+variable "lpar1-aix_image_id" {
   type		= string
 }
 
-variable "pi_sys_type" {
+variable "lpar1-aix_sys_type" {
   type		= string
 }
+
+
+
+
+variable "lpar2-linux_memory" {
+  type		= string
+}
+
+variable "lpar2-linux_processors" {
+  type		= string
+}
+
+variable "lpar2-linux_instance_name" {
+  type		= string
+}
+
+variable "lpar2-linux_proc_type" {
+  type		= string
+}
+
+variable "lpar2-linux_image_id" {
+  type		= string
+}
+
+variable "lpar2-linux_sys_type" {
+  type		= string
+}
+
+
+
+
 
 variable "pi_volume_size" {
   type		= string
