@@ -45,6 +45,45 @@ resource "ibm_pi_network" "my_subnet" {
   pi_dns = ["8.8.8.8"]
 }
 
+
+
+locals {
+  expanded_instances = merge([
+    for server_type, config in var.server_types :
+    {
+      for i in range(config.count) :
+      "${server_type}-${i}" => {
+        pi_memory
+        pi_processors
+        pi_instance_name
+        pi_proc_type
+        pi_image_id
+        pi_sys_type	
+      }
+    }
+  ]...)
+}
+
+resource "aws_instance" "vm" {
+  for_each = local.expanded_instances
+
+  pi_memory
+  pi_processors
+  pi_instance_name
+  pi_proc_type
+  pi_image_id
+  pi_sys_type	
+  ami                         = each.value.ami_id
+  instance_type               = each.value.instance_type
+  user_data                   = each.value.user_data
+  associate_public_ip_address = true
+
+  tags = each.value.tags
+}
+
+
+
+
 resource "ibm_pi_instance" "lpar1-aix" {
   for_each              = lpar1-aix
   pi_memory		= each.value.memory
