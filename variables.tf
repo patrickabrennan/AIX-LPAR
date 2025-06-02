@@ -43,6 +43,23 @@ variable lpar1-aix_count {
   type		= string
 }
 
+
+variable "lpar1-aix" {
+  default = {
+    "AIX-Instance-1" = { memory = 8, processors = 1 }
+    "AIX-Instance-2" = { memory = 16, processors = 2 }
+    "AIX-Instance-3" = { memory = 32, processors = 4 }
+  }
+}
+
+variable "lpar2-linux" {
+  default = {
+    "Linux-Instance-1" = { memory = 4, processors = 0.5 }
+    "Linux-Instance-2" = { memory = 8, processors = 1 }
+    "Linux-Instance-3" = { memory = 16, processors = 2 }
+  }
+}
+
 variable "lpar1-aix_memory" {
   type		= string
 }
