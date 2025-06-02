@@ -14,6 +14,48 @@ variable "workspace-name" {
   type		= string
 }
 
+variable "server_types" {
+  type = map(object({
+    count        = number
+    os_type      = string
+    ami_id       = string
+    instance_type = string
+    user_data     = string
+    tags          = map(string)
+  }))
+
+  default = {
+    linux = {
+      count         = 2
+      os_type       = "linux"
+      ami_id        = "ami-0abcdef1234567890"
+      instance_type = "t3.micro"
+      user_data     = file("linux_user_data.sh")
+      tags          = { Role = "App", OS = "Linux" }
+    }
+    windows = {
+      count         = 3
+      os_type       = "windows"
+      ami_id        = "ami-0fedcba9876543210"
+      instance_type = "t3.medium"
+      user_data     = file("windows_user_data.ps1")
+      tags          = { Role = "DB", OS = "Windows" }
+    }
+    ubuntu = {
+      count         = 1
+      os_type       = "ubuntu"
+      ami_id        = "ami-0abcdef9876543210"
+      instance_type = "t3.small"
+      user_data     = file("ubuntu_user_data.sh")
+      tags          = { Role = "Web", OS = "Ubuntu" }
+    }
+  }
+}
+
+
+
+
+
 variable "pi_cloud_instance_id" {
   type		= string
 }
