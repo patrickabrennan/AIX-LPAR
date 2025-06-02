@@ -54,7 +54,7 @@ variable "server_types" {
     #  pi_sys_type		= "s922"
     #}
   }
-}
+
 
 
 
