@@ -49,7 +49,7 @@ resource "ibm_pi_instance" "lpar1-aix" {
   for_each              = lpar1-aix
   pi_memory		= each.value.memory
   pi_processors		= each.value.processors #var.lpar1-aix_processors
-  pi_instance_name	= 
+  pi_instance_name	= each.key
   pi_proc_type		= var.lpar1-aix_proc_type
   pi_image_id 		= var.lpar1-aix_image_id
   pi_sys_type		= var.lpar1-aix_sys_type
@@ -65,8 +65,7 @@ resource "ibm_pi_instance" "lpar2-linux" {
   for_each              = lpar2-linux
   pi_memory		= each.value.memory
   pi_processors		= each.value.processors
-  pi_instance_name	= var.lpar2-linux_instance_name
-
+  pi_instance_name	= each.key
   pi_proc_type		= var.lpar2-linux_proc_type
   pi_image_id 		= var.lpar2-linux_image_id
   pi_sys_type		= var.lpar2-linux_sys_type
