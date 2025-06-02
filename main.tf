@@ -54,11 +54,11 @@ locals {
       for i in range(config.count) :
       "${server_type}-${i}" => {
         pi_memory          = config.pi_memory
-        pi_processors      = config.p
-        pi_instance_name   = config.p
-        pi_proc_type       = config.p
-        pi_image_id        = pi_image_id
-        pi_sys_type        = pi_sys_type 
+        pi_processors      = config.pi_processors
+        pi_instance_name   = config.pi_instance_name 
+        pi_proc_type       = config.pi_proc_type
+        pi_image_id        = config.pi_image_id
+        pi_sys_type        = config.pi_sys_type 
       }
     }
   ]...)
