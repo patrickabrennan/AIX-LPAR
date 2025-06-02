@@ -17,37 +17,41 @@ variable "workspace-name" {
 variable "server_types" {
   type = map(object({
     count        = number
-    os_type      = string
-    ami_id       = string
-    instance_type = string
-    user_data     = string
-    tags          = map(string)
+    pi_memory    = string
+    pi_processors		= string
+    pi_instance_name	= string
+    pi_proc_type		= string
+    pi_image_id 		= string
+    pi_sys_type		= string
   }))
 
   default = {
     linux = {
       count         = 2
-      os_type       = "linux"
-      ami_id        = "ami-0abcdef1234567890"
-      instance_type = "t3.micro"
-      user_data     = file("linux_user_data.sh")
-      tags          = { Role = "App", OS = "Linux" }
+      pi_memory  = 2
+      pi_processors		= 0.25
+      pi_instance_name	= 
+      pi_proc_type		= 
+      pi_image_id 		= 
+      pi_sys_type		= 
     }
     windows = {
       count         = 3
-      os_type       = "windows"
-      ami_id        = "ami-0fedcba9876543210"
-      instance_type = "t3.medium"
-      user_data     = file("windows_user_data.ps1")
-      tags          = { Role = "DB", OS = "Windows" }
-    }
-    ubuntu = {
+      pi_memory  = 8
+      pi_processors		= 0.25
+      pi_instance_name	= 
+      pi_proc_type		= 
+      pi_image_id 		= 
+      pi_sys_type		= 
+}
+    AIX = {
       count         = 1
-      os_type       = "ubuntu"
-      ami_id        = "ami-0abcdef9876543210"
-      instance_type = "t3.small"
-      user_data     = file("ubuntu_user_data.sh")
-      tags          = { Role = "Web", OS = "Ubuntu" }
+      pi_memory  = 16
+      pi_processors		= 4
+      pi_instance_name	= 
+      pi_proc_type		= 
+      pi_image_id 		= 
+      pi_sys_type		= 
     }
   }
 }
