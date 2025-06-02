@@ -53,68 +53,62 @@ locals {
     {
       for i in range(config.count) :
       "${server_type}-${i}" => {
-        pi_memory
-        pi_processors
-        pi_instance_name
-        pi_proc_type
-        pi_image_id
-        pi_sys_type	
+        pi_memory          = config.pi_memory
+        pi_processors      = config.p
+        pi_instance_name   = config.p
+        pi_proc_type       = config.p
+        pi_image_id        = pi_image_id
+        pi_sys_type        = pi_sys_type 
       }
     }
   ]...)
 }
 
-resource "aws_instance" "vm" {
+resource "ibm_pi_instance" "vm" {
   for_each = local.expanded_instances
 
-  pi_memory
-  pi_processors
-  pi_instance_name
-  pi_proc_type
-  pi_image_id
-  pi_sys_type	
-  ami                         = each.value.ami_id
-  instance_type               = each.value.instance_type
-  user_data                   = each.value.user_data
-  associate_public_ip_address = true
-
-  tags = each.value.tags
+  pi_memory                   = each.value.pi_memory
+  pi_processors               = each.value.pi_processors
+  pi_instance_name            = each.value.pi_instance_name
+  pi_proc_type                = each.value.pi_proc_type
+  pi_image_id                 = each.value.pi_image_id
+  pi_sys_type                 = each.value.pi_sys_type
 }
 
 
 
 
-resource "ibm_pi_instance" "lpar1-aix" {
-  for_each              = lpar1-aix
-  pi_memory		= each.value.memory
-  pi_processors		= each.value.processors #var.lpar1-aix_processors
-  pi_instance_name	= each.key
-  pi_proc_type		= var.lpar1-aix_proc_type
-  pi_image_id 		= var.lpar1-aix_image_id
-  pi_sys_type		= var.lpar1-aix_sys_type
-  pi_replicants = var.lpar1-aix_replicants
-  pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
-  pi_key_pair_name = var.pi_key_name
-  pi_network {
-   network_id = ibm_pi_network.my_subnet.network_id
-  }
-}
+#resource "ibm_pi_instance" "lpar1-aix" {
+#  for_each              = lpar1-aix
+#  pi_memory		= each.value.memory
+#  pi_processors		= each.value.processors #var.lpar1-aix_processors
+#  pi_instance_name	= each.key
+#  pi_proc_type		= var.lpar1-aix_proc_type
+#  pi_image_id 		= var.lpar1-aix_image_id
+#  pi_sys_type		= var.lpar1-aix_sys_type
+#  pi_replicants = var.lpar1-aix_replicants
+#  pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
+#  pi_key_pair_name = var.pi_key_name
+#  pi_network {
+#   network_id = ibm_pi_network.my_subnet.network_id
+#  }
+#}
 
-resource "ibm_pi_instance" "lpar2-linux" {
-  for_each              = lpar2-linux
-  pi_memory		= each.value.memory
-  pi_processors		= each.value.processors
-  pi_instance_name	= each.key
-  pi_proc_type		= var.lpar2-linux_proc_type
-  pi_image_id 		= var.lpar2-linux_image_id
-  pi_sys_type		= var.lpar2-linux_sys_type
-  pi_replicants = var.lpar2-linux_replicants
-  pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
-  pi_key_pair_name = var.pi_key_name
-  pi_network {
-   network_id = ibm_pi_network.my_subnet.network_id
-  }
-}
+#resource "ibm_pi_instance" "lpar2-linux" {
+#  for_each              = lpar2-linux
+#  pi_memory		= each.value.memory
+#  pi_processors		= each.value.processors
+#  pi_instance_name	= each.key
+#  pi_proc_type		= var.lpar2-linux_proc_type
+#  pi_image_id 		= var.lpar2-linux_image_id
+#  pi_sys_type		= var.lpar2-linux_sys_type
+#  pi_replicants = var.lpar2-linux_replicants
+#  pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
+#  pi_key_pair_name = var.pi_key_name
+#  pi_network {
+#   network_id = ibm_pi_network.my_subnet.network_id
+#  }
+#}
 
 #create Volume
 resource "ibm_pi_volume" "lpar1-aix_test_volume" {
