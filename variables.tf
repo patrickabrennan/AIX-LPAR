@@ -30,28 +30,28 @@ variable "server_types" {
       count         = 2
       pi_memory  = 2
       pi_processors		= 0.25
-      pi_instance_name	= 
-      pi_proc_type		= 
-      pi_image_id 		= 
-      pi_sys_type		= 
+      pi_instance_name	= "linux"
+      pi_proc_type		= "shared"
+      pi_image_id 		= "RHEL9-SP4"
+      pi_sys_type		= "s922"
     }
-    windows = {
-      count         = 3
-      pi_memory  = 8
-      pi_processors		= 0.25
-      pi_instance_name	= 
-      pi_proc_type		= 
-      pi_image_id 		= 
-      pi_sys_type		= 
-}
+    #windows = {
+    #  count         = 3
+    #  pi_memory  = 8
+    #  pi_processors		= 0.25
+    #  pi_instance_name	= 
+    #  pi_proc_type		= 
+    #  pi_image_id 		= 
+    #  pi_sys_type		= 
+    }
     AIX = {
       count         = 1
       pi_memory  = 16
       pi_processors		= 4
-      pi_instance_name	= 
-      pi_proc_type		= 
-      pi_image_id 		= 
-      pi_sys_type		= 
+      pi_instance_name	= "AIX-Instance"
+      pi_proc_type		= "dedicated"
+      pi_image_id 		= "7300-03-00"
+      pi_sys_type		= "s922"
     }
   }
 }
@@ -90,21 +90,21 @@ variable lpar1-aix_count {
 }
 
 
-variable "lpar1-aix" {
-  default = {
-    "AIX-Instance-1" = { memory = 8, processors = 1 }
-    "AIX-Instance-2" = { memory = 16, processors = 2 }
-    "AIX-Instance-3" = { memory = 32, processors = 4 }
-  }
-}
+#variable "lpar1-aix" {
+#  default = {
+#    "AIX-Instance-1" = { memory = 8, processors = 1 }
+#    "AIX-Instance-2" = { memory = 16, processors = 2 }
+#    "AIX-Instance-3" = { memory = 32, processors = 4 }
+#  }
+#}
 
-variable "lpar2-linux" {
-  default = {
-    "Linux-Instance-1" = { memory = 4, processors = 0.5 }
-    "Linux-Instance-2" = { memory = 8, processors = 1 }
-    "Linux-Instance-3" = { memory = 16, processors = 2 }
-  }
-}
+#variable "lpar2-linux" {
+#  default = {
+#    "Linux-Instance-1" = { memory = 4, processors = 0.5 }
+#    "Linux-Instance-2" = { memory = 8, processors = 1 }
+#    "Linux-Instance-3" = { memory = 16, processors = 2 }
+#  }
+#}
 
 variable "lpar1-aix_memory" {
   type		= string
