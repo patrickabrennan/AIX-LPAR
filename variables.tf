@@ -14,28 +14,66 @@ variable "workspace-name" {
   type		= string
 }
 
+
+
+
 variable "server_types" {
   type = map(object({
     count              = number
-    pi_memory          = string
-    pi_processors		   = string
+    pi_size            = string           # size label like "small", "large"
     pi_instance_name   = string
-    pi_proc_type		   = string
-    pi_image_id 		   = string
-    pi_sys_type		     = string
+    pi_proc_type       = string
+    pi_image_id        = string
+    pi_sys_type        = string
   }))
 
   default = {
     linux = {
-      count               = 2
-      #pi_memory          = 2
-      #pi_processors	    = 0.25
-      pi_size             = "medium"
-      pi_instance_name	= "linux"
-      pi_proc_type		  = "shared"
-      pi_image_id 		  = "RHEL9-SP4"
-      pi_sys_type		    = "s922"
+      count              = 2
+      pi_size            = "medium"
+      pi_instance_name   = "linux"
+      pi_proc_type       = "shared"
+      pi_image_id        = "RHEL9-SP4"
+      pi_sys_type        = "s922"
     }
+    aix = {
+      count              = 2
+      pi_size            = "large"
+      pi_instance_name   = "aix"
+      pi_proc_type       = "dedicated"
+      pi_image_id        = "7300-03-00"
+      pi_sys_type        = "s922"
+    }
+  }
+}
+
+
+
+
+
+
+#variable "server_types" {
+#  type = map(object({
+#    count              = number
+#    pi_memory          = string
+#    pi_processors		   = string
+#    pi_instance_name   = string
+#    pi_proc_type		   = string
+#    pi_image_id 		   = string
+#    pi_sys_type		     = string
+#  }))
+
+#  default = {
+#    linux = {
+#      count               = 2
+#      #pi_memory          = 2
+#      #pi_processors	    = 0.25
+#      pi_size             = "medium"
+#      pi_instance_name	= "linux"
+#      pi_proc_type		  = "shared"
+#      pi_image_id 		  = "RHEL9-SP4"
+#      pi_sys_type		    = "s922"
+#    }
     #windows = {
     #  count            = 3
     #  pi_memory        = 8
@@ -45,18 +83,18 @@ variable "server_types" {
     #  pi_image_id 		  = 
     #  pi_sys_type		  = 
     #}
-    aix = {
-      count             = 3
-      #pi_memory        = 16
-      #pi_processors		= 4
-      pi_size           = "large"
-      pi_instance_name	= "AIX-Instance"
-      pi_proc_type		  = "dedicated"
-      pi_image_id 		  = "7300-03-00"
-      pi_sys_type		    = "s922"
-    }
-  }
-}
+#    aix = {
+#      count             = 3
+#      #pi_memory        = 16
+#      #pi_processors		= 4
+#      pi_size           = "large"
+#      pi_instance_name	= "AIX-Instance"
+#      pi_proc_type		  = "dedicated"
+#      pi_image_id 		  = "7300-03-00"
+#      pi_sys_type		    = "s922"
+#    }
+#  }
+#}
 
 
 
