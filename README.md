@@ -45,7 +45,7 @@ pi_volume_type	= "tier3"
 pi_key_name       = "powervs-ssh"
 ```
 
-## Default values for LPAR asspecified in the variables.tf file
+## Default values for LPAR asspecified in the `variables.tf` file
 ```
 default = {
     linux = {
@@ -67,6 +67,42 @@ default = {
   }
 }
 ```
+
+## Default values for LPAR asspecified in the `main.tf` file
+```
+locals {
+  linux_size_map = {
+    small = {
+      pi_memory     = 2
+      pi_processors = 0.25
+    }
+    medium = {
+      pi_memory     = 4
+      pi_processors = 0.5
+    }
+    large = {
+      pi_memory     = 8
+      pi_processors = 1
+    }
+  }
+
+  aix_size_map = {
+    small = {
+      pi_memory     = 8
+      pi_processors = 2
+    }
+    medium = {
+      pi_memory     = 16
+      pi_processors = 4
+    }
+    large = {
+      pi_memory     = 32
+      pi_processors = 8
+    }
+  }
+}
+```
+
 
 ## Documentation
  - [IBM Power Systems Virtual Server Docs](https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-getting-started)
