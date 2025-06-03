@@ -86,7 +86,7 @@ variable "pi_gateway" {
   type		= string
 }
 
-commented out 6/3/25
+#commented out 6/3/25
 #variable lpar1-aix_count {
 #  type		= string
 #}
