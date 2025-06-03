@@ -43,16 +43,16 @@ variable "server_types" {
     #  pi_proc_type		= 
     #  pi_image_id 		= 
     #  pi_sys_type		= 
-    }
-    #AIX = {
-    #  count         = 1
-    #  pi_memory  = 16
-    #  pi_processors		= 4
-    #  pi_instance_name	= "AIX-Instance"
-    #  pi_proc_type		= "dedicated"
-    #  pi_image_id 		= "7300-03-00"
-    #  pi_sys_type		= "s922"
     #}
+    aix = {
+      count         = 1
+      pi_memory  = 16
+      pi_processors		= 4
+      pi_instance_name	= "AIX-Instance"
+      pi_proc_type		= "dedicated"
+      pi_image_id 		= "7300-03-00"
+      pi_sys_type		= "s922"
+    }
   }
 
 
