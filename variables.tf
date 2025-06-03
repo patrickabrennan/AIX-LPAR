@@ -38,7 +38,7 @@ variable "server_types" {
     }
     aix = {
       count              = 2
-      pi_size            = "large"
+      pi_size            = "medium"
       pi_instance_name   = "aix"
       pi_proc_type       = "dedicated"
       pi_image_id        = "7300-03-00"
