@@ -1,6 +1,37 @@
 region  = "us-south"
 zone = "us-south"
 workspace-name = "Pfizer-LPAR_Demo"
+
+linux_size_map = {
+  small = {
+    pi_memory     = 2
+    pi_processors = 0.25
+  }
+  medium = {
+    pi_memory     = 4
+    pi_processors = 0.5
+  }
+  large = {
+    pi_memory     = 8
+    pi_processors = 1
+  }
+}
+
+aix_size_map = {
+  small = {
+    pi_memory     = 8
+    pi_processors = 2
+  }
+  medium = {
+    pi_memory     = 16
+    pi_processors = 4
+  }
+  large = {
+    pi_memory     = 32
+    pi_processors = 8
+  }
+}
+
 pi_cloud_instance_id	= "10f21edf-47a3-454f-b2a3-e1032b4ea6c5"
 pi_network_name	= "public-subnet-1"
 pi_network_type = "pub-vlan"
