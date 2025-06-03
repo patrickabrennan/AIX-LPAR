@@ -69,7 +69,7 @@ resource "ibm_pi_instance" "vm" {
 
   pi_memory                   = each.value.pi_memory
   pi_processors               = each.value.pi_processors
-  pi_instance_name            = each.value.pi_instance_name-each.value.index
+  pi_instance_name            = each.value.pi_instance_name
   pi_proc_type                = each.value.pi_proc_type
   pi_image_id                 = each.value.pi_image_id
   pi_sys_type                 = each.value.pi_sys_type
