@@ -112,13 +112,16 @@ locals {
         pi_image_id       = config.pi_image_id
         pi_sys_type       = config.pi_sys_type
 
-        pi_memory     = server_type == "linux"
-          ? var.linux_size_map[config.pi_size].pi_memory
-          : var.aix_size_map[config.pi_size].pi_memory
-
-        pi_processors = server_type == "linux"
-          ? var.linux_size_map[config.pi_size].pi_processors
-          : var.aix_size_map[config.pi_size].pi_processors
+        pi_memory = (
+          server_type == "linux"
+            ? var.linux_size_map[config.pi_size].pi_memory
+            : var.aix_size_map[config.pi_size].pi_memory
+        )
+        pi_processors = ( 
+          server_type == "linux"
+            ? var.linux_size_map[config.pi_size].pi_processors
+            : var.aix_size_map[config.pi_size].pi_processors
+        )
       }
     ]
   ])
