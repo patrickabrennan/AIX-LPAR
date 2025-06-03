@@ -13,7 +13,7 @@ aix_size_map = {
 }
 server_types = {
   linux = {
-    count              = 1
+    count              = 3
     pi_size            = "small"    # <-- override default from "medium" to "small"
     pi_instance_name   = "linux"
     pi_proc_type       = "shared"
@@ -21,8 +21,8 @@ server_types = {
     pi_sys_type        = "s922"
   }
   aix = {
-      count              = 3
-      pi_size            = "small"
+      count              = 2
+      pi_size            = "medium"
       pi_instance_name   = "aix"
       pi_proc_type       = "dedicated"
       pi_image_id        = "7300-03-00"
