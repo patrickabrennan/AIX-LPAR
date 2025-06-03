@@ -28,21 +28,47 @@ The following are for setting up the example terraform for use in HCP Terraform:
 ```
 region  = "us-south"
 zone = "us-south"
-workspace-name = "Demo"
-pi_network_name	= "subnet-1"
-pi_network_type = "vlan"
+workspace-name = "LPAR_Demo"
+linux_size_map = {
+  small = { pi_memory = 2, pi_processors = 0.25 }
+  medium = { pi_memory = 4, pi_processors = 0.5 }
+  large = { pi_memory = 8, pi_processors = 1 }
+}
+aix_size_map = {
+  small = { pi_memory = 8, pi_processors = 2 }
+  medium = { pi_memory = 16, pi_processors = 4 }
+  large = { pi_memory = 32, pi_processors = 8 }
+}
+server_types = {
+  linux = {
+    count              = 1
+    pi_size            = "small"    # <-- override default from "medium" to "small"
+    pi_instance_name   = "linux"
+    pi_proc_type       = "shared"
+    pi_image_id        = "RHEL9-SP4"
+    pi_sys_type        = "s922"
+  }
+  aix = {
+      count              = 3
+      pi_size            = "small"
+      pi_instance_name   = "aix"
+      pi_proc_type       = "dedicated"
+      pi_image_id        = "7300-03-00"
+      pi_sys_type        = "s922"
+    }
+}  
+pi_cloud_instance_id	= "<YOUR pi_cloud_instance_id>"
+pi_network_name	= "public-subnet-1"
+pi_network_type = "pub-vlan"
 pi_cidr		= "10.1.0.0/24"
 pi_gateway  = "10.1.0.1"
-#pi_dns = ["8.8.8.8"]
-pi_memory		= 4
-pi_processors		= 0.25
-pi_instance_name	= "AIX_instance"
-pi_proc_type		= "shared"
-pi_image_id 		= "7300-03-00"
-pi_sys_type		= "s922"
-pi_volume_size	= 100
-pi_volume_name	= "test_volume"
-pi_volume_type	= "tier3"
+pi_dns = "8.8.8.8"
+lpar1-aix_volume_size	= 100
+lpar1-aix_volume_name	= "test_volume"
+lpar1-aix_volume_type	= "tier3"
+lpar2-linux_volume_size	= 100
+lpar2-linux_volume_name	= "test_volume"
+lpar2-linux_volume_type	= "tier3"
 pi_key_name       = "powervs-ssh"
 ```
 
