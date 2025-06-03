@@ -143,19 +143,19 @@ resource "ibm_pi_volume" "lpar2-linux_test_volume" {
 #  pi_instance_id = ibm_pi_instance.lpar2-linux.instance_id
 #}
 
-#resource "ibm_security_group" "sg1" {
-#    name = "sg1"
-#    description = "allow my app traffic"
-#}
+resource "ibm_security_group" "sg1" {
+  name = "sg1"
+  description = "allow my app traffic"
+}
 
-#resource "ibm_security_group_rule" "allow_port_22" {
-#    direction = "ingress"
-#    ether_type = "IPv4"
-#    port_range_min = 22
-#    port_range_max = 22
-#    protocol = "tcp"
-#    security_group_id = ibm_security_group.sg1.id
-#}
+resource "ibm_security_group_rule" "allow_port_22" {
+  direction = "ingress"
+  ether_type = "IPv4"
+  port_range_min = 22
+  port_range_max = 22
+  protocol = "tcp"
+  security_group_id = ibm_security_group.sg1.id
+}
 
 resource "ibm_pi_key" "PowerVS_sshkey" {
   pi_key_name       = var.pi_key_name
