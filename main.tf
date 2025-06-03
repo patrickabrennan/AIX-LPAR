@@ -127,6 +127,11 @@ resource "ibm_pi_instance" "vm" {
   pi_proc_type     = each.value.pi_proc_type
   pi_image_id      = each.value.pi_image_id
   pi_sys_type      = each.value.pi_sys_type
+  pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
+  pi_key_pair_name = var.pi_key_name
+  pi_network {
+    network_id = ibm_pi_network.my_subnet.network_id
+  }
 }
 
 
