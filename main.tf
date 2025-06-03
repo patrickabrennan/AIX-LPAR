@@ -46,39 +46,105 @@ resource "ibm_pi_network" "my_subnet" {
 }
 
 
-
 locals {
-  expanded_instances = merge([
-    for server_type, config in var.server_types :
-    {
-      for i in range(config.count) :
-      "${server_type}-${i}" => {
-        pi_memory          = config.pi_memory
-        pi_processors      = config.pi_processors
-        pi_instance_name   = config.pi_instance_name 
-        pi_proc_type       = config.pi_proc_type
-        pi_image_id        = config.pi_image_id
-        pi_sys_type        = config.pi_sys_type 
-      }
+  linux_size_map = {
+    small = {
+      pi_memory     = 2
+      pi_processors = 0.25
     }
-  ]...)
-}
+    medium = {
+      pi_memory     = 4
+      pi_processors = 0.5
+    }
+    large = {
+      pi_memory     = 8
+      pi_processors = 1
+    }
+  }
 
-resource "ibm_pi_instance" "vm" {
-  for_each = local.expanded_instances
-
-  pi_memory                   = each.value.pi_memory
-  pi_processors               = each.value.pi_processors
-  pi_instance_name            = each.value.pi_instance_name
-  pi_proc_type                = each.value.pi_proc_type
-  pi_image_id                 = each.value.pi_image_id
-  pi_sys_type                 = each.value.pi_sys_type
-  pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
-  pi_key_pair_name = var.pi_key_name
-  pi_network {
-  network_id = ibm_pi_network.my_subnet.network_id
+  aix_size_map = {
+    small = {
+      pi_memory     = 8
+      pi_processors = 2
+    }
+    medium = {
+      pi_memory     = 16
+      pi_processors = 4
+    }
+    large = {
+      pi_memory     = 32
+      pi_processors = 8
+    }
   }
 }
+
+locals {
+  instances = flatten([
+    for server_type, config in var.server_types : [
+      for i in range(config.count) : {
+        key               = "${server_type}-${i}"
+        server_type       = server_type
+        index             = i
+        pi_instance_name  = config.pi_instance_name
+        pi_proc_type      = config.pi_proc_type
+        pi_image_id       = config.pi_image_id
+        pi_sys_type       = config.pi_sys_type
+
+        # Memory and processor selection per platform
+        pi_memory     = server_type == "linux" ? local.linux_size_map[config.pi_size].pi_memory : local.aix_size_map[config.pi_size].pi_memory
+        pi_processors = server_type == "linux" ? local.linux_size_map[config.pi_size].pi_processors : local.aix_size_map[config.pi_size].pi_processors
+      }
+    ]
+  ])
+
+  instance_map = { for inst in local.instances : inst.key => inst }
+}
+
+
+#locals {
+#  expanded_instances = merge([
+#    for server_type, config in var.server_types :
+#    {
+#      for i in range(config.count) :
+#      "${server_type}-${i}" => {
+#        pi_memory          = config.pi_memory
+#        pi_processors      = config.pi_processors
+#        pi_instance_name   = config.pi_instance_name 
+#        pi_proc_type       = config.pi_proc_type
+#        pi_image_id        = config.pi_image_id
+#        pi_sys_type        = config.pi_sys_type 
+#      }
+#    }
+#  ]...)
+#}
+
+resource "ibm_pi_instance" "vm" {
+  for_each = local.instance_map
+
+  pi_memory        = each.value.pi_memory
+  pi_processors    = each.value.pi_processors
+  pi_instance_name = "${each.value.pi_instance_name}-${each.value.index}"
+  pi_proc_type     = each.value.pi_proc_type
+  pi_image_id      = each.value.pi_image_id
+  pi_sys_type      = each.value.pi_sys_type
+}
+
+
+#resource "ibm_pi_instance" "vm" {
+#  for_each = local.expanded_instances
+#
+#  pi_memory                   = each.value.pi_memory
+#  pi_processors               = each.value.pi_processors
+#  pi_instance_name            = each.value.pi_instance_name
+#  pi_proc_type                = each.value.pi_proc_type
+#  pi_image_id                 = each.value.pi_image_id
+#  pi_sys_type                 = each.value.pi_sys_type
+#  pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid   #var.pi_cloud_instance_id
+#  pi_key_pair_name = var.pi_key_name
+#  pi_network {
+#  network_id = ibm_pi_network.my_subnet.network_id
+#  }
+#}
 
 
 
