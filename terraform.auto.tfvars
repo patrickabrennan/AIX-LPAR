@@ -32,6 +32,9 @@ aix_size_map = {
   }
 }
 
+
+linux_size_map = "medium"
+aix_size_map = "medium"
 pi_cloud_instance_id	= "10f21edf-47a3-454f-b2a3-e1032b4ea6c5"
 pi_network_name	= "public-subnet-1"
 pi_network_type = "pub-vlan"
