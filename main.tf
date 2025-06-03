@@ -45,61 +45,6 @@ resource "ibm_pi_network" "my_subnet" {
   pi_dns = ["8.8.8.8"]
 }
 
-#Added 6/3
-#locals {
-#  linux_size_map = {
-#    small = {
-#      pi_memory     = 2
-#      pi_processors = 0.25
-#    }
-#    medium = {
-#      pi_memory     = 4
-#      pi_processors = 0.5
-#    }
-#    large = {
-#      pi_memory     = 8
-#      pi_processors = 1
-#    }
-#  }
-
-#  aix_size_map = {
-#    small = {
-#      pi_memory     = 8
-#      pi_processors = 2
-#    }
-#    medium = {
-#      pi_memory     = 16
-#      pi_processors = 4
-#    }
-#    large = {
-#      pi_memory     = 32
-#      pi_processors = 8
-#    }
-#  }
-#}
-
-#locals {
-#  instances = flatten([
-#    for server_type, config in var.server_types : [
-#      for i in range(config.count) : {
-#        key               = "${server_type}-${i}"
-#        server_type       = server_type
-#        index             = i
-#        pi_instance_name  = config.pi_instance_name
-#        pi_proc_type      = config.pi_proc_type
-#        pi_image_id       = config.pi_image_id
-#        pi_sys_type       = config.pi_sys_type
-#
-#        # Memory and processor selection per platform
-#        pi_memory     = server_type == "linux" ? local.linux_size_map[config.pi_size].pi_memory : local.aix_size_map[config.pi_size].pi_memory
-#        pi_processors = server_type == "linux" ? local.linux_size_map[config.pi_size].pi_processors : local.aix_size_map[config.pi_size].pi_processors
-#      }
-#    ]
-#  ])
-#
-#  instance_map = { for inst in local.instances : inst.key => inst }
-#}
-
 locals {
   instances = flatten([
     for server_type, config in var.server_types : [
@@ -128,12 +73,6 @@ locals {
 
   instance_map = { for inst in local.instances : inst.key => inst }
 }
-
-
-
-
-
-
 
 resource "ibm_pi_instance" "vm" {
   for_each = local.instance_map
