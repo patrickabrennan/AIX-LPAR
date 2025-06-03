@@ -14,8 +14,6 @@ variable "workspace-name" {
   type		= string
 }
 
-
-
 #ADDED 6/3/25
 variable "linux_size_map" {
   type = map(object({
@@ -33,10 +31,6 @@ variable "aix_size_map" {
   description = "AIX size definitions"
 }
 #END 6/3/25
-
-
-
-
 
 variable "server_types" {
   type = map(object({
@@ -92,65 +86,66 @@ variable "pi_gateway" {
   type		= string
 }
 
-variable lpar1-aix_count {
-  type		= string
-}
+commented out 6/3/25
+#variable lpar1-aix_count {
+#  type		= string
+#}
 
-variable "lpar1-aix_memory" {
-  type		= string
-}
+#variable "lpar1-aix_memory" {
+#  type		= string
+#}
 
-variable "lpar1-aix_processors" {
-  type		= string
-}
+#variable "lpar1-aix_processors" {
+#  type		= string
+#}
 
-variable "lpar1-aix_instance_name" {
-  type		= string
-}
+#variable "lpar1-aix_instance_name" {
+#  type		= string
+#}
 
-variable "lpar1-aix_proc_type" {
-  type		= string
-}
+#variable "lpar1-aix_proc_type" {
+#  type		= string
+#}
 
-variable "lpar1-aix_image_id" {
-  type		= string
-}
+#variable "lpar1-aix_image_id" {
+#  type		= string
+#}
 
-variable "lpar1-aix_sys_type" {
-  type		= string
-}
+#variable "lpar1-aix_sys_type" {
+#  type		= string
+#}
 
-variable lpar1-aix_replicants { 
-  type		= string
-}
+#variable lpar1-aix_replicants { 
+#  type		= string
+#}
 
-variable "lpar2-linux_memory" {
-  type		= string
-}
+#variable "lpar2-linux_memory" {
+#  type		= string
+#}
 
-variable "lpar2-linux_processors" {
-  type		= string
-}
+#variable "lpar2-linux_processors" {
+#  type		= string
+#}
 
-variable "lpar2-linux_instance_name" {
-  type		= string
-}
+#variable "lpar2-linux_instance_name" {
+#  type		= string
+#}
 
-variable "lpar2-linux_proc_type" {
-  type		= string
-}
+#variable "lpar2-linux_proc_type" {
+#  type		= string
+#}
 
-variable "lpar2-linux_image_id" {
-  type		= string
-}
+#variable "lpar2-linux_image_id" {
+#  type		= string
+#}
 
-variable "lpar2-linux_sys_type" {
-  type		= string
-}
+#variable "lpar2-linux_sys_type" {
+#  type		= string
+#}
 
-variable lpar2-linux_replicants { 
-  type		= string
-}
+#variable lpar2-linux_replicants { 
+#  type		= string
+#}
 
 variable "lpar1-aix_volume_size" {
   type		= string
