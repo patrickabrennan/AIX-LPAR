@@ -24,7 +24,7 @@ The following are for setting up the example terraform for use in HCP Terraform:
  - All variables have detault vaults, so you will be prompted for your IBM Cloud API key. Enter it and save. 
  - Perform a terraform run. It will create a plan and apply
  
-```##Default values in variable.tf 
+```###Default values in variable.tf 
 region  = "us-south"
 zone = "us-south"
 workspace-name = "Demo"
@@ -45,7 +45,7 @@ pi_volume_type	= "tier3"
 pi_key_name       = "powervs-ssh"
 ```
 
-## Default values for LPAR asspecified in the `variables.tf` file
+### Default values for LPAR asspecified in the `variables.tf` file
 ```
 default = {
     linux = {
@@ -68,7 +68,7 @@ default = {
 }
 ```
 
-## Default values for LPAR asspecified in the `main.tf` file
+### Default values for LPAR asspecified in the `main.tf` file
 ```
 locals {
   linux_size_map = {
