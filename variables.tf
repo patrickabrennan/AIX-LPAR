@@ -45,7 +45,7 @@ variable "server_types" {
     #  pi_sys_type		= 
     #}
     aix = {
-      count         = 1
+      count         = 3
       pi_memory  = 16
       pi_processors		= 4
       pi_instance_name	= "AIX-Instance"
