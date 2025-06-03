@@ -14,6 +14,30 @@ variable "workspace-name" {
   type		= string
 }
 
+
+
+#ADDED 6/3/25
+variable "linux_size_map" {
+  type = map(object({
+    pi_memory     = number
+    pi_processors = number
+  }))
+  description = "Linux size definitions"
+}
+
+variable "aix_size_map" {
+  type = map(object({
+    pi_memory     = number
+    pi_processors = number
+  }))
+  description = "AIX size definitions"
+}
+#END 6/3/25
+
+
+
+
+
 variable "server_types" {
   type = map(object({
     count              = number
