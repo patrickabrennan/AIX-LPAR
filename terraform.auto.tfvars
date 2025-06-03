@@ -14,7 +14,26 @@ aix_size_map = {
   large = { pi_memory = 32, pi_processors = 8 }
 }
 
-pi_cloud_instance_id	= "10f21edf-47a3-454f-b2a3-e1032b4ea6c5"
+server_types = {
+  linux = {
+    count              = 1
+    pi_size            = "small"    # <-- override default from "medium" to "small"
+    pi_instance_name   = "linux"
+    pi_proc_type       = "shared"
+    pi_image_id        = "RHEL9-SP4"
+    pi_sys_type        = "s922"
+  }
+  aix = {
+      count              = 3
+      pi_size            = "small"
+      pi_instance_name   = "aix"
+      pi_proc_type       = "dedicated"
+      pi_image_id        = "7300-03-00"
+      pi_sys_type        = "s922"
+    }
+}  
+
+#pi_cloud_instance_id	= "10f21edf-47a3-454f-b2a3-e1032b4ea6c5"
 pi_network_name	= "public-subnet-1"
 pi_network_type = "pub-vlan"
 pi_cidr		= "10.1.0.0/24"
