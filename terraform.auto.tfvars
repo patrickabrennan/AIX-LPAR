@@ -1,6 +1,6 @@
 region  = "us-south"
 zone = "us-south"
-workspace-name = "Pfizer-LPAR_Demo"
+workspace-name = "LPAR_Demo"
 linux_size_map = {
   small = { pi_memory = 2, pi_processors = 0.25 }
   medium = { pi_memory = 4, pi_processors = 0.5 }
