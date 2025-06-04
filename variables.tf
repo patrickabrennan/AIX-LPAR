@@ -62,9 +62,9 @@ variable "server_types" {
   }
 }
 
-variable "pi_cloud_instance_id" {
-  type		= string
-}
+#variable "pi_cloud_instance_id" {
+#  type		= string
+#}
 
 variable "pi_network_name" {
   type		= string
