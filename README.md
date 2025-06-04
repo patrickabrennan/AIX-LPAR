@@ -28,7 +28,7 @@ The following are for setting up the example terraform for use in HCP Terraform:
 ```
 region  = "us-south"
 zone = "us-south"
-workspace-name = "LPAR_Demo"
+workspace-name = "Pfizer-LPAR_Demo"
 linux_size_map = {
   small = { pi_memory = 2, pi_processors = 0.25 }
   medium = { pi_memory = 4, pi_processors = 0.5 }
@@ -41,7 +41,7 @@ aix_size_map = {
 }
 server_types = {
   linux = {
-    count              = 1
+    count              = 3
     pi_size            = "small"    # <-- override default from "medium" to "small"
     pi_instance_name   = "linux"
     pi_proc_type       = "shared"
@@ -49,15 +49,14 @@ server_types = {
     pi_sys_type        = "s922"
   }
   aix = {
-      count              = 3
-      pi_size            = "small"
+      count              = 2
+      pi_size            = "medium"
       pi_instance_name   = "aix"
       pi_proc_type       = "dedicated"
       pi_image_id        = "7300-03-00"
       pi_sys_type        = "s922"
     }
 }  
-pi_cloud_instance_id	= "<YOUR pi_cloud_instance_id>"
 pi_network_name	= "public-subnet-1"
 pi_network_type = "pub-vlan"
 pi_cidr		= "10.1.0.0/24"
