@@ -121,6 +121,7 @@ resource "ibm_pi_volume" "lpar2-linux_test_volume" {
 resource "ibm_security_group" "sg1" {
   name = "sg1"
   description = "allow my app traffic"
+  depends_on = [ ibm_pi_workspace.powervs_service_instance ]
 }
 
 resource "ibm_security_group_rule" "allow_port_22" {
@@ -130,7 +131,6 @@ resource "ibm_security_group_rule" "allow_port_22" {
   port_range_max = 22
   protocol = "tcp"
   security_group_id = ibm_security_group.sg1.id
-  depends_on = [ ibm_pi_workspace.powervs_service_instance ]
 }
 
 resource "ibm_pi_key" "PowerVS_sshkey" {
