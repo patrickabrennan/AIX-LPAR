@@ -130,10 +130,12 @@ resource "ibm_security_group_rule" "allow_port_22" {
   port_range_max = 22
   protocol = "tcp"
   security_group_id = ibm_security_group.sg1.id
+  depends_on = [ ibm_pi_workspace.powervs_service_instance ]
 }
 
 resource "ibm_pi_key" "PowerVS_sshkey" {
   pi_key_name       = var.pi_key_name
   pi_ssh_key = var.pi_ssh_key
   pi_cloud_instance_id	= data.ibm_resource_instance.powervs.guid  #var.pi_cloud_instance_id
+  depends_on = [ ibm_pi_workspace.powervs_service_instance ]
 }
